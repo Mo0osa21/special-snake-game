@@ -1,5 +1,19 @@
-let snakeSize = 1
+let snakeBody = ['square60']
+let snakeSize = snakeBody.length
 let board = [
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -10,6 +24,8 @@ let board = [
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -20,6 +36,8 @@ let board = [
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -30,6 +48,8 @@ let board = [
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -40,6 +60,8 @@ let board = [
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -50,6 +72,8 @@ let board = [
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -60,14 +84,20 @@ let board = [
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
   '',
+  'normalApple',
+  'badApple',
   '',
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -78,13 +108,20 @@ let board = [
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
+  'snake',
+  'snake',
+  'snake',
   '',
   '',
   '',
   '',
   '',
+  'obstacle',
+  'obstacle',
   '',
   '',
   '',
@@ -95,55 +132,20 @@ let board = [
   '',
   '',
   '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  ''
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle'
 ]
 let condition = false
 let message = ''
@@ -154,8 +156,21 @@ const messageElm = document.querySelector('#message')
 const scoreElm = document.querySelector('#score')
 const levelElm = document.querySelector('#level')
 
-board.forEach((square, index) => {
-  document
-    .querySelector(`#square${index}`)
-    .addEventListener('resize', handelClick)
+board.forEach((sqr, index) => {
+  if (sqr === 'obstacle') {
+    square = document.querySelector(`#square${index}`).style.backgroundColor =
+      'black'
+  }
+  if (sqr === 'snake') {
+    square = document.querySelector(`#square${index}`).style.backgroundColor =
+      'green'
+  }
+  if (sqr === 'normalApple') {
+    square = document.querySelector(`#square${index}`).style.backgroundColor =
+      'red'
+  }
+  if (sqr === 'badApple') {
+    square = document.querySelector(`#square${index}`).style.backgroundColor =
+      'gray'
+  }
 })
