@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="app.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Special Snake Game</h1>
+    <h2 id="message"></h2>
+    <h2 id="score"></h2>
+    <h2 id="level"></h2>
+
+    <section class="board">
+      <div class="sqr obstacle" id="square0"></div>
+      <div class="sqr obstacle" id="square1"></div>
+      <div class="sqr obstacle" id="square2"></div>
+      <div class="sqr obstacle" id="square3"></div>
+      <div class="sqr obstacle" id="square4"></div>
+      <div class="sqr obstacle" id="square5"></div>
+      <div class="sqr obstacle" id="square6"></div>
+      <div class="sqr obstacle" id="square7"></div>
+      <div class="sqr obstacle" id="square8"></div>
+      <div class="sqr obstacle" id="square9"></div>
+      <div class="sqr obstacle" id="square10"></div>
+      <div class="sqr obstacle" id="square11"></div>
+      <div class="sqr obstacle" id="square12"></div>
+      <div class="sqr" id="square13"></div>
+      <div class="sqr" id="square14"></div>
+      <div class="sqr" id="square15"></div>
+      <div class="sqr" id="square16"></div>
+      <div class="sqr" id="square17"></div>
+      <div class="sqr" id="square18"></div>
+      <div class="sqr" id="square19"></div>
+      <div class="sqr" id="square20"></div>
+      <div class="sqr" id="square21"></div>
+      <div class="sqr" id="square22"></div>
+      <div class="sqr obstacle" id="square23"></div>
+      <div class="sqr obstacle" id="square24"></div>
+      <div class="sqr" id="square25"></div>
+      <div class="sqr" id="square26"></div>
+      <div class="sqr" id="square27"></div>
+      <div class="sqr" id="square28"></div>
+      <div class="sqr" id="square29"></div>
+      <div class="sqr" id="square30"></div>
+      <div class="sqr" id="square31"></div>
+      <div class="sqr" id="square32"></div>
+      <div class="sqr" id="square33"></div>
+      <div class="sqr" id="square34"></div>
+      <div class="sqr obstacle" id="square35"></div>
+      <div class="sqr obstacle" id="square36"></div>
+      <div class="sqr" id="square37"></div>
+      <div class="sqr" id="square38"></div>
+      <div class="sqr" id="square39"></div>
+      <div class="sqr" id="square40"></div>
+      <div class="sqr" id="square41"></div>
+      <div class="sqr" id="square42"></div>
+      <div class="sqr" id="square43"></div>
+      <div class="sqr" id="square44"></div>
+      <div class="sqr" id="square45"></div>
+      <div class="sqr" id="square46"></div>
+      <div class="sqr obstacle" id="square47"></div>
+      <div class="sqr obstacle" id="square48"></div>
+      <div class="sqr" id="square49"></div>
+      <div class="sqr" id="square50"></div>
+      <div class="sqr" id="square51"></div>
+      <div class="sqr" id="square52"></div>
+      <div class="sqr" id="square53"></div>
+      <div class="sqr" id="square54"></div>
+      <div class="sqr" id="square55"></div>
+      <div class="sqr" id="square56"></div>
+      <div class="sqr" id="square57"></div>
+      <div class="sqr" id="square58"></div>
+      <div class="sqr obstacle" id="square59"></div>
+      <div class="sqr obstacle" id="square60"></div>
+      <div class="sqr" id="square61"></div>
+      <div class="sqr" id="square62"></div>
+      <div class="sqr" id="square63"></div>
+      <div class="sqr" id="square64"></div>
+      <div class="sqr" id="square65"></div>
+      <div class="sqr" id="square66"></div>
+      <div class="sqr" id="square67"></div>
+      <div class="sqr" id="square68"></div>
+      <div class="sqr" id="square69"></div>
+      <div class="sqr" id="square70"></div>
+      <div class="sqr obstacle" id="square71"></div>
+      <div class="sqr obstacle" id="square72"></div>
+      <div class="sqr" id="square73"></div>
+      <div class="sqr" id="square74"></div>
+      <div class="sqr" id="square75"></div>
+      <div class="sqr" id="square76"></div>
+      <div class="sqr" id="square77"></div>
+      <div class="sqr" id="square78"></div>
+      <div class="sqr" id="square79"></div>
+      <div class="sqr" id="square80"></div>
+      <div class="sqr" id="square81"></div>
+      <div class="sqr" id="square82"></div>
+      <div class="sqr obstacle" id="square83"></div>
+      <div class="sqr obstacle" id="square84"></div>
+      <div class="sqr" id="square85"></div>
+      <div class="sqr" id="square86"></div>
+      <div class="sqr" id="square87"></div>
+      <div class="sqr" id="square88"></div>
+      <div class="sqr" id="square89"></div>
+      <div class="sqr" id="square90"></div>
+      <div class="sqr" id="square91"></div>
+      <div class="sqr" id="square92"></div>
+      <div class="sqr" id="square93"></div>
+      <div class="sqr" id="square94"></div>
+      <div class="sqr obstacle" id="square95"></div>
+      <div class="sqr obstacle" id="square96"></div>
+      <div class="sqr" id="square97"></div>
+      <div class="sqr" id="square98"></div>
+      <div class="sqr" id="square99"></div>
+      <div class="sqr" id="square100"></div>
+      <div class="sqr" id="square101"></div>
+      <div class="sqr" id="square102"></div>
+      <div class="sqr" id="square103"></div>
+      <div class="sqr" id="square104"></div>
+      <div class="sqr" id="square105"></div>
+      <div class="sqr" id="square106"></div>
+      <div class="sqr obstacle" id="square107"></div>
+      <div class="sqr obstacle" id="square108"></div>
+      <div class="sqr" id="square109"></div>
+      <div class="sqr" id="square110"></div>
+      <div class="sqr" id="square111"></div>
+      <div class="sqr" id="square112"></div>
+      <div class="sqr" id="square113"></div>
+      <div class="sqr" id="square114"></div>
+      <div class="sqr" id="square115"></div>
+      <div class="sqr" id="square116"></div>
+      <div class="sqr" id="square117"></div>
+      <div class="sqr" id="square118"></div>
+      <div class="sqr obstacle" id="square119"></div>
+      <div class="sqr obstacle" id="square120"></div>
+      <div class="sqr" id="square121"></div>
+      <div class="sqr" id="square122"></div>
+      <div class="sqr" id="square123"></div>
+      <div class="sqr" id="square124"></div>
+      <div class="sqr" id="square125"></div>
+      <div class="sqr" id="square126"></div>
+      <div class="sqr" id="square127"></div>
+      <div class="sqr" id="square128"></div>
+      <div class="sqr" id="square129"></div>
+      <div class="sqr" id="square130"></div>
+      <div class="sqr obstacle" id="square131"></div>
+      <div class="sqr obstacle" id="square132"></div>
+      <div class="sqr obstacle" id="square133"></div>
+      <div class="sqr obstacle" id="square134"></div>
+      <div class="sqr obstacle" id="square135"></div>
+      <div class="sqr obstacle" id="square136"></div>
+      <div class="sqr obstacle" id="square137"></div>
+      <div class="sqr obstacle" id="square138"></div>
+      <div class="sqr obstacle" id="square139"></div>
+      <div class="sqr obstacle" id="square140"></div>
+      <div class="sqr obstacle" id="square141"></div>
+      <div class="sqr obstacle" id="square142"></div>
+      <div class="sqr obstacle" id="square143"></div>
+    </section>
+  </body>
+</html>
