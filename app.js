@@ -1,5 +1,6 @@
 let snakeBody = ['square66', 'square65', 'square64']
 let snakeSize = snakeBody.length
+let direction = 'right'
 let board = [
   'obstacle',
   'obstacle',
@@ -90,8 +91,8 @@ let board = [
   '',
   '',
   '',
-  'normalApple',
-  'badApple',
+  '',
+  '',
   '',
   '',
   '',
@@ -151,6 +152,32 @@ let message = ''
 let level = 0
 let Speed = 0.3
 
+const getNormalApple = () => {
+  const randomIndex = Math.floor(Math.random() * 100)
+  if (
+    board[randomIndex] !== 'obstacle' &&
+    board[randomIndex] !== 'snake' &&
+    board[randomIndex] !== 'badApple'
+  ) {
+    board[randomIndex] = 'normalApple'
+  } else {
+    getNormalApple()
+  }
+}
+
+const getBadApple = () => {
+  const randomIndex = Math.floor(Math.random() * 100)
+  if (
+    board[randomIndex] !== 'obstacle' &&
+    board[randomIndex] !== 'snake' &&
+    board[randomIndex] !== 'normalApple'
+  ) {
+    board[randomIndex] = 'badApple'
+  } else {
+    getBadApple()
+  }
+}
+
 const messageElm = document.querySelector('#message')
 const scoreElm = document.querySelector('#score')
 const levelElm = document.querySelector('#level')
@@ -175,11 +202,14 @@ const updateBoard = () => {
 snakeBody.forEach((part, index) => {
   board[snakeBody[index].substring(6)] = 'snake'
 })
-updateBoard()
 
+getBadApple()
+getNormalApple()
+updateBoard()
 document.addEventListener('keyup', (event) => {
   let pastLocation = ''
-  if (event.key === 'ArrowDown') {
+  if (event.key === 'ArrowDown' && direction !== 'up') {
+    direction = 'down'
     snakeBody.forEach((part, index) => {
       if (index === 0) {
         pastLocation = part
@@ -195,7 +225,8 @@ document.addEventListener('keyup', (event) => {
     })
     board[pastLocation.substring(6)] = ''
     updateBoard()
-  } else if (event.key === 'ArrowUp') {
+  } else if (event.key === 'ArrowUp' && direction !== 'down') {
+    direction = 'up'
     snakeBody.forEach((part, index) => {
       if (index === 0) {
         pastLocation = part
@@ -211,7 +242,8 @@ document.addEventListener('keyup', (event) => {
     })
     board[pastLocation.substring(6)] = ''
     updateBoard()
-  } else if (event.key === 'ArrowRight') {
+  } else if (event.key === 'ArrowRight' && direction !== 'left') {
+    direction = 'right'
     snakeBody.forEach((part, index) => {
       if (index === 0) {
         pastLocation = part
@@ -227,7 +259,8 @@ document.addEventListener('keyup', (event) => {
     })
     board[pastLocation.substring(6)] = ''
     updateBoard()
-  } else if (event.key === 'ArrowLeft') {
+  } else if (event.key === 'ArrowLeft' && direction !== 'right') {
+    direction = 'left'
     snakeBody.forEach((part, index) => {
       if (index === 0) {
         pastLocation = part
