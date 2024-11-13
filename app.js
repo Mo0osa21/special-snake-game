@@ -144,7 +144,6 @@ let board = [
   'obstacle',
   'obstacle',
   'obstacle',
-  'obstacle',
   'obstacle'
 ]
 let condition = false
@@ -157,20 +156,23 @@ const scoreElm = document.querySelector('#score')
 const levelElm = document.querySelector('#level')
 
 const updateBoard = () => {
+  let square = ''
   board.forEach((sqr, index) => {
+    square = document.querySelector(`#square${index}`)
     if (sqr === 'obstacle') {
-      document.querySelector(`#square${index}`).style.backgroundColor = 'black'
+      square.style.backgroundColor = 'black'
     } else if (sqr === 'snake') {
-      document.querySelector(`#square${index}`).style.backgroundColor = 'green'
+      square.style.backgroundColor = 'green'
     } else if (sqr === 'normalApple') {
-      document.querySelector(`#square${index}`).style.backgroundColor = 'red'
+      square.style.backgroundColor = 'red'
     } else if (sqr === 'badApple') {
-      document.querySelector(`#square${index}`).style.backgroundColor = 'gray'
+      square.style.backgroundColor = 'gray'
     }
   })
 }
+updateBoard()
 
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keyup', (event) => {
   if (event.key === 'ArrowDown') {
     snakeBody.forEach((part, index) => {
       let pastLocation = ''
@@ -232,5 +234,4 @@ document.addEventListener('keydown', (event) => {
     })
     updateBoard()
   }
-  console.log(snakeBody)
 })
