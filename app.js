@@ -181,7 +181,6 @@ document.addEventListener('keyup', (event) => {
   let pastLocation = ''
   if (event.key === 'ArrowDown') {
     snakeBody.forEach((part, index) => {
-      pastLocation = ''
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
@@ -198,7 +197,6 @@ document.addEventListener('keyup', (event) => {
     updateBoard()
   } else if (event.key === 'ArrowUp') {
     snakeBody.forEach((part, index) => {
-      pastLocation = ''
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
@@ -215,7 +213,6 @@ document.addEventListener('keyup', (event) => {
     updateBoard()
   } else if (event.key === 'ArrowRight') {
     snakeBody.forEach((part, index) => {
-      pastLocation = ''
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
@@ -232,7 +229,6 @@ document.addEventListener('keyup', (event) => {
     updateBoard()
   } else if (event.key === 'ArrowLeft') {
     snakeBody.forEach((part, index) => {
-      let pastLocation = ''
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
