@@ -1,4 +1,4 @@
-let snakeBody = ['square60', 'square59', 'square58']
+let snakeBody = ['square66', 'square65', 'square64']
 let snakeSize = snakeBody.length
 let board = [
   'obstacle',
@@ -78,7 +78,7 @@ let board = [
   '',
   '',
   '',
-  'snake',
+  '',
   '',
   '',
   '',
@@ -167,56 +167,68 @@ const updateBoard = () => {
       square.style.backgroundColor = 'red'
     } else if (sqr === 'badApple') {
       square.style.backgroundColor = 'gray'
+    } else if (sqr === '') {
+      square.style.backgroundColor = 'white'
     }
   })
 }
+snakeBody.forEach((part, index) => {
+  board[snakeBody[index].substring(6)] = 'snake'
+})
 updateBoard()
 
 document.addEventListener('keyup', (event) => {
+  let pastLocation = ''
   if (event.key === 'ArrowDown') {
     snakeBody.forEach((part, index) => {
-      let pastLocation = ''
+      pastLocation = ''
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) + 12}`
         board[snakeBody[index].substring(6)] = 'snake'
       } else {
+        board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = pastLocation
         board[snakeBody[index].substring(6)] = 'snake'
         pastLocation = part
       }
     })
+    board[pastLocation.substring(6)] = ''
     updateBoard()
   } else if (event.key === 'ArrowUp') {
     snakeBody.forEach((part, index) => {
-      let pastLocation = ''
+      pastLocation = ''
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) - 12}`
         board[snakeBody[index].substring(6)] = 'snake'
       } else {
+        board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = pastLocation
         board[snakeBody[index].substring(6)] = 'snake'
         pastLocation = part
       }
     })
+    board[pastLocation.substring(6)] = ''
     updateBoard()
   } else if (event.key === 'ArrowRight') {
     snakeBody.forEach((part, index) => {
-      let pastLocation = ''
+      pastLocation = ''
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) + 1}`
         board[snakeBody[index].substring(6)] = 'snake'
       } else {
+        board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = pastLocation
         board[snakeBody[index].substring(6)] = 'snake'
         pastLocation = part
       }
     })
+    board[pastLocation.substring(6)] = ''
     updateBoard()
   } else if (event.key === 'ArrowLeft') {
     snakeBody.forEach((part, index) => {
@@ -227,11 +239,13 @@ document.addEventListener('keyup', (event) => {
         snakeBody[index] = `square${Number(part.substring(6)) - 1}`
         board[snakeBody[index].substring(6)] = 'snake'
       } else {
+        board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = pastLocation
         board[snakeBody[index].substring(6)] = 'snake'
         pastLocation = part
       }
     })
+    board[pastLocation.substring(6)] = ''
     updateBoard()
   }
 })
