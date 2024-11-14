@@ -149,7 +149,7 @@ let board = [
 ]
 let condition = false
 let message = ''
-let level = 0
+let level = 1
 let Speed = 0.3
 
 const messageElm = document.querySelector('#message')
@@ -199,6 +199,9 @@ const updateBoard = () => {
       square.style.backgroundColor = 'white'
     }
   })
+
+  scoreElm.textContent = snakeBody.length
+  levelElm.textContent = levelCalc()
 }
 
 getBadApple()
@@ -214,12 +217,19 @@ document.addEventListener('keyup', (event) => {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) + 12}`
-        if (board[snakeBody[index].substring(6)] === 'obstacle') {
+        if (
+          board[snakeBody[index].substring(6)] === 'obstacle' ||
+          board[snakeBody[index].substring(6)] === 'snake'
+        ) {
           reset()
           return
         }
         if (board[snakeBody[index].substring(6)] === 'badApple') {
           decreaseSize()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'normalApple') {
+          increaseSize()
           return
         }
         board[snakeBody[index].substring(6)] = 'snake'
@@ -239,12 +249,19 @@ document.addEventListener('keyup', (event) => {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) - 12}`
-        if (board[snakeBody[index].substring(6)] === 'obstacle') {
+        if (
+          board[snakeBody[index].substring(6)] === 'obstacle' ||
+          board[snakeBody[index].substring(6)] === 'snake'
+        ) {
           reset()
           return
         }
         if (board[snakeBody[index].substring(6)] === 'badApple') {
           decreaseSize()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'normalApple') {
+          increaseSize()
           return
         }
         board[snakeBody[index].substring(6)] = 'snake'
@@ -264,12 +281,19 @@ document.addEventListener('keyup', (event) => {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) + 1}`
-        if (board[snakeBody[index].substring(6)] === 'obstacle') {
+        if (
+          board[snakeBody[index].substring(6)] === 'obstacle' ||
+          board[snakeBody[index].substring(6)] === 'snake'
+        ) {
           reset()
           return
         }
         if (board[snakeBody[index].substring(6)] === 'badApple') {
           decreaseSize()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'normalApple') {
+          increaseSize()
           return
         }
         board[snakeBody[index].substring(6)] = 'snake'
@@ -289,12 +313,19 @@ document.addEventListener('keyup', (event) => {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) - 1}`
-        if (board[snakeBody[index].substring(6)] === 'obstacle') {
+        if (
+          board[snakeBody[index].substring(6)] === 'obstacle' ||
+          board[snakeBody[index].substring(6)] === 'snake'
+        ) {
           reset()
           return
         }
         if (board[snakeBody[index].substring(6)] === 'badApple') {
           decreaseSize()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'normalApple') {
+          increaseSize()
           return
         }
         board[snakeBody[index].substring(6)] = 'snake'
@@ -311,29 +342,28 @@ document.addEventListener('keyup', (event) => {
 })
 
 const moveSnake = () => {
-  if (direction === 'right') {
-    direction = 'right'
-    snakeBody.forEach((part, index) => {
-      if (index === 0) {
-        pastLocation = part
-        board[snakeBody[index].substring(6)] = ''
-        snakeBody[index] = `square${Number(part.substring(6)) + 1}`
-        board[snakeBody[index].substring(6)] = 'snake'
-      } else {
-        board[snakeBody[index].substring(6)] = ''
-        snakeBody[index] = pastLocation
-        board[snakeBody[index].substring(6)] = 'snake'
-        pastLocation = part
-      }
-    })
-    board[pastLocation.substring(6)] = ''
-    updateBoard()
-  } else if (direction === 'down') {
+  if (direction === 'down') {
+    direction = 'down'
     snakeBody.forEach((part, index) => {
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) + 12}`
+        if (
+          board[snakeBody[index].substring(6)] === 'obstacle' ||
+          board[snakeBody[index].substring(6)] === 'snake'
+        ) {
+          reset()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'badApple') {
+          decreaseSize()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'normalApple') {
+          increaseSize()
+          return
+        }
         board[snakeBody[index].substring(6)] = 'snake'
       } else {
         board[snakeBody[index].substring(6)] = ''
@@ -345,11 +375,59 @@ const moveSnake = () => {
     board[pastLocation.substring(6)] = ''
     updateBoard()
   } else if (direction === 'up') {
+    direction = 'up'
     snakeBody.forEach((part, index) => {
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) - 12}`
+        if (
+          board[snakeBody[index].substring(6)] === 'obstacle' ||
+          board[snakeBody[index].substring(6)] === 'snake'
+        ) {
+          reset()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'badApple') {
+          decreaseSize()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'normalApple') {
+          increaseSize()
+          return
+        }
+        board[snakeBody[index].substring(6)] = 'snake'
+      } else {
+        board[snakeBody[index].substring(6)] = ''
+        snakeBody[index] = pastLocation
+        board[snakeBody[index].substring(6)] = 'snake'
+        pastLocation = part
+      }
+    })
+    board[pastLocation.substring(6)] = ''
+    updateBoard()
+  } else if (direction === 'right') {
+    direction = 'right'
+    snakeBody.forEach((part, index) => {
+      if (index === 0) {
+        pastLocation = part
+        board[snakeBody[index].substring(6)] = ''
+        snakeBody[index] = `square${Number(part.substring(6)) + 1}`
+        if (
+          board[snakeBody[index].substring(6)] === 'obstacle' ||
+          board[snakeBody[index].substring(6)] === 'snake'
+        ) {
+          reset()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'badApple') {
+          decreaseSize()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'normalApple') {
+          increaseSize()
+          return
+        }
         board[snakeBody[index].substring(6)] = 'snake'
       } else {
         board[snakeBody[index].substring(6)] = ''
@@ -361,11 +439,27 @@ const moveSnake = () => {
     board[pastLocation.substring(6)] = ''
     updateBoard()
   } else if (direction === 'left') {
+    direction = 'left'
     snakeBody.forEach((part, index) => {
       if (index === 0) {
         pastLocation = part
         board[snakeBody[index].substring(6)] = ''
         snakeBody[index] = `square${Number(part.substring(6)) - 1}`
+        if (
+          board[snakeBody[index].substring(6)] === 'obstacle' ||
+          board[snakeBody[index].substring(6)] === 'snake'
+        ) {
+          reset()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'badApple') {
+          decreaseSize()
+          return
+        }
+        if (board[snakeBody[index].substring(6)] === 'normalApple') {
+          increaseSize()
+          return
+        }
         board[snakeBody[index].substring(6)] = 'snake'
       } else {
         board[snakeBody[index].substring(6)] = ''
@@ -384,11 +478,11 @@ const reset = () => {
     snakeBody.pop()
   })
 
-  for (let i = 0; i < board.length; i++) {
-    if (board[i] !== 'obstacle') {
-      board[i] = ''
+  board.forEach((elm, index) => {
+    if (elm !== 'obstacle') {
+      board[index] = ''
     }
-  }
+  })
 
   snakeBody = ['square66', 'square65', 'square64']
   snakeSize = snakeBody.length
@@ -426,4 +520,32 @@ const decreaseSize = () => {
     reset()
   }
 }
+
+const increaseSize = () => {
+  let newSegment
+
+  const tail = snakeBody[snakeBody.length - 1]
+  const tailIndex = Number(tail.substring(6))
+
+  if (direction === 'up') {
+    newSegment = `square${tailIndex + 12}`
+  } else if (direction === 'down') {
+    newSegment = `square${tailIndex - 12}`
+  } else if (direction === 'left') {
+    newSegment = `square${tailIndex + 1}`
+  } else if (direction === 'right') {
+    newSegment = `square${tailIndex - 1}`
+  }
+
+  snakeBody.push(newSegment)
+  board[tailIndex] = 'snake'
+
+  snakeSize = snakeBody.length
+
+  getNormalApple()
+
+  updateBoard()
+}
+
+const levelCalc = () => {}
 //setInterval(moveSnake, 400)
