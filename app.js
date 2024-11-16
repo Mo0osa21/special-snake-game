@@ -201,7 +201,6 @@ const updateBoard = () => {
   })
 
   scoreElm.textContent = snakeBody.length
-  levelElm.textContent = levelCalc()
 }
 
 getBadApple()
@@ -336,6 +335,7 @@ document.addEventListener('keyup', (event) => {
         pastLocation = part
       }
     })
+
     board[pastLocation.substring(6)] = ''
     updateBoard()
   }
@@ -474,23 +474,22 @@ const moveSnake = () => {
 }
 
 const reset = () => {
-  snakeBody.forEach((part) => {
-    snakeBody.pop()
-  })
-
   board.forEach((elm, index) => {
     if (elm !== 'obstacle') {
       board[index] = ''
     }
   })
 
+  for (let i = 0; i < snakeSize; i++) {
+    snakeBody.pop()
+  }
+
   snakeBody = ['square66', 'square65', 'square64']
   snakeSize = snakeBody.length
   direction = 'right'
 
   snakeBody.forEach((part) => {
-    const index = parseInt(part.substring(6))
-    board[index] = 'snake'
+    board[Number(part.substring(6))] = 'snake'
   })
 
   getBadApple()
@@ -500,7 +499,6 @@ const reset = () => {
   message = ''
   level = 0
   Speed = 0.3
-
   updateBoard()
 }
 
@@ -522,23 +520,12 @@ const decreaseSize = () => {
 }
 
 const increaseSize = () => {
-  let newSegment
-
-  const tail = snakeBody[snakeBody.length - 1]
-  const tailIndex = Number(tail.substring(6))
-
-  if (direction === 'up') {
-    newSegment = `square${tailIndex + 12}`
-  } else if (direction === 'down') {
-    newSegment = `square${tailIndex - 12}`
-  } else if (direction === 'left') {
-    newSegment = `square${tailIndex + 1}`
-  } else if (direction === 'right') {
-    newSegment = `square${tailIndex - 1}`
-  }
-
-  snakeBody.push(newSegment)
-  board[tailIndex] = 'snake'
+  board.forEach((elm, index) => {
+    if (elm === 'normalApple') {
+      snakeBody.push(`square${index}`)
+      board[index] = 'snake'
+    }
+  })
 
   snakeSize = snakeBody.length
 
