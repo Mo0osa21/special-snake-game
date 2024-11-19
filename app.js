@@ -151,7 +151,7 @@ let board = [
 let condition = false
 let message = ''
 let level = 1
-let speed = 700
+let speed = 400
 let score = snakeSize
 
 const messageElm = document.querySelector('#message')
@@ -159,9 +159,14 @@ const scoreElm = document.querySelector('#score')
 const levelElm = document.querySelector('#level')
 const startButtonElm = document.querySelector('#start')
 const instructionsElm = document.querySelector('#instructions')
+const mainElm = document.querySelector('#main')
+const boardElm = document.querySelector('.board')
+const homeButtonElm = document.querySelector('#back-home')
+const againButtonElm = document.querySelector('#try-again')
+const loseElm = document.querySelector('#losing-msg')
 
 const getNormalApple = () => {
-  const randomIndex = Math.floor(Math.random() * 100)
+  const randomIndex = Math.floor(Math.random() * 144)
   if (
     board[randomIndex] !== 'obstacle' &&
     board[randomIndex] !== 'snake' &&
@@ -174,7 +179,7 @@ const getNormalApple = () => {
 }
 
 const getBadApple = () => {
-  const randomIndex = Math.floor(Math.random() * 100)
+  const randomIndex = Math.floor(Math.random() * 144)
   if (
     board[randomIndex] !== 'obstacle' &&
     board[randomIndex] !== 'snake' &&
@@ -240,7 +245,7 @@ const downMovement = () => {
         board[snakeBody[index].substring(6)] === 'obstacle' ||
         board[snakeBody[index].substring(6)] === 'snake'
       ) {
-        reset()
+        showGameOverScreen()
         return
       }
       if (board[snakeBody[index].substring(6)] === 'badApple') {
@@ -273,7 +278,7 @@ const upMovement = () => {
         board[snakeBody[index].substring(6)] === 'obstacle' ||
         board[snakeBody[index].substring(6)] === 'snake'
       ) {
-        reset()
+        showGameOverScreen()
         return
       }
       if (board[snakeBody[index].substring(6)] === 'badApple') {
@@ -306,7 +311,7 @@ const rightMovement = () => {
         board[snakeBody[index].substring(6)] === 'obstacle' ||
         board[snakeBody[index].substring(6)] === 'snake'
       ) {
-        reset()
+        showGameOverScreen()
         return
       }
       if (board[snakeBody[index].substring(6)] === 'badApple') {
@@ -339,7 +344,7 @@ const leftMovement = () => {
         board[snakeBody[index].substring(6)] === 'obstacle' ||
         board[snakeBody[index].substring(6)] === 'snake'
       ) {
-        reset()
+        showGameOverScreen()
         return
       }
       if (board[snakeBody[index].substring(6)] === 'badApple') {
@@ -394,43 +399,43 @@ const reset = () => {
 
 const levelCalc = () => {
   if (score >= 3 && score < 5) {
-    speed = 700
+    speed = 400
     level = 1
   } else if (score >= 5 && score < 10) {
-    speed = 600
+    speed = 370
     level = 2
   } else if (score >= 10 && score < 15) {
-    speed = 500
+    speed = 340
     level = 3
   } else if (score >= 15 && score < 20) {
-    speed = 550
+    speed = 310
     level = 3
   } else if (score >= 20 && score < 25) {
-    speed = 500
+    speed = 280
     level = 4
   } else if (score >= 25 && score < 30) {
-    speed = 450
+    speed = 250
     level = 5
   } else if (score >= 30 && score < 35) {
-    speed = 400
+    speed = 220
     level = 6
   } else if (score >= 35 && score < 40) {
-    speed = 350
+    speed = 190
     level = 7
   } else if (score >= 40 && score < 45) {
-    speed = 300
+    speed = 160
     level = 8
   } else if (score >= 45 && score < 50) {
-    speed = 250
+    speed = 130
     level = 9
   } else if (score >= 50 && score < 55) {
-    speed = 200
+    speed = 100
     level = 10
   } else if (score >= 55 && score < 60) {
-    speed = 150
+    speed = 80
     level = 11
   } else if (score >= 60) {
-    speed = 100
+    speed = 70
     level = 12
   }
 }
@@ -455,8 +460,8 @@ const updateBoard = () => {
   })
 
   score = snakeSize
-  scoreElm.textContent = score
-  levelElm.textContent = level
+  scoreElm.innerHTML = `<h3>Score: ${score}</h3>`
+  levelElm.innerHTML = `<h3>Level: ${level}</h3>`
   levelCalc()
 
   clearInterval(gameInterval)
@@ -469,6 +474,10 @@ const startGame = () => {
   updateBoard()
   instructionsElm.style.display = 'none'
   startButtonElm.style.display = 'none'
+  boardElm.style.display = 'flex'
+  boardElm.style.flexWrap = 'wrap'
+  boardElm.style.justifyContent = 'center'
+  boardElm.style.margin = '20px auto'
 }
 
 document.addEventListener('keyup', (event) => {
@@ -483,5 +492,16 @@ document.addEventListener('keyup', (event) => {
     leftMovement()
   }
 })
-
+const displayLosingMsg = () => {
+  loseElm.innerHTML = `<p>You got ${score} points as score and reached level ${level}</p>`
+}
+const showGameOverScreen = () => {
+  window.location.href = 'gameover.html'
+}
+againButtonElm.addEventListener('click', () => {
+  window.location.href = 'index.html'
+})
+homeButtonElm.addEventListener('click', () => {
+  window.location.href = 'index.html'
+})
 startButtonElm.addEventListener('click', startGame)

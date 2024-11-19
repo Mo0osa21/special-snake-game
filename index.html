@@ -9,12 +9,13 @@
   </head>
   <body>
     <header>
-      <h1>Snake Game</h1>
-      <h2 id="message"></h2>
-      <h2 id="score"></h2>
-      <h2 id="level"></h2>
+      <div id="head">
+        <div class="scoreDiv"><h3 id="score"></h3></div>
+        <div class="title"><h1>Snake Game</h1></div>
+        <div class="levelDiv"><h3 id="level"></h3></div>
+      </div>
     </header>
-    <main>
+    <main id="main">
       <section class="board">
         <div class="sqr" id="square0"></div>
         <div class="sqr" id="square1"></div>
@@ -177,8 +178,7 @@
           <li>⬅️ Arrow Left - Move Left</li>
           <li>➡️ Arrow Right - Move Right</li>
         </ul>
-        Obstacles: <br />
-        Avoid hitting walls or yourself! <br />
+
         Levels: <br />
         <ul>
           <li>Your snake moves faster as you score higher.</li>
@@ -188,13 +188,14 @@
         Game Over: <br />
         The game ends if you hit an obstacle or your own body when moving.
         <br />
-        💡 Tips:
-        <ul>
-          <li>Plan your moves to avoid traps.</li>
-          <li>React quickly as the snake speeds up with each level.</li>
-        </ul>
+
         Press Start to Begin! 🚀
         <button id="start">Start</button>
+      </div>
+      <div id="game-over" style="display: none; text-align: center">
+        <h2>Game Over</h2>
+        <button id="try-again">Try Again</button>
+        <button id="back-home">Back to Home</button>
       </div>
     </main>
   </body>
