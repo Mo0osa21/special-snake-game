@@ -16,6 +16,20 @@ let board = [
   'obstacle',
   'obstacle',
   'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
   '',
   '',
   '',
@@ -38,23 +52,6 @@ let board = [
   '',
   '',
   '',
-  'obstacle',
-  'obstacle',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  'obstacle',
-  'obstacle',
-  '',
-  '',
-  '',
   '',
   '',
   '',
@@ -67,15 +64,10 @@ let board = [
   '',
   '',
   '',
-  'snake',
-  'snake',
-  'snake',
   '',
   '',
   '',
   '',
-  'obstacle',
-  'obstacle',
   '',
   '',
   '',
@@ -98,23 +90,6 @@ let board = [
   '',
   '',
   '',
-  'obstacle',
-  'obstacle',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  'obstacle',
-  'obstacle',
-  '',
-  '',
-  '',
   '',
   '',
   '',
@@ -134,6 +109,172 @@ let board = [
   '',
   '',
   '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
+  'obstacle',
   'obstacle',
   'obstacle',
   'obstacle',
@@ -166,7 +307,7 @@ const againButtonElm = document.querySelector('#try-again')
 const loseElm = document.querySelector('#losing-msg')
 
 const getNormalApple = () => {
-  const randomIndex = Math.floor(Math.random() * 144)
+  const randomIndex = Math.floor(Math.random() * board.length)
   if (
     board[randomIndex] !== 'obstacle' &&
     board[randomIndex] !== 'snake' &&
@@ -179,7 +320,7 @@ const getNormalApple = () => {
 }
 
 const getBadApple = () => {
-  const randomIndex = Math.floor(Math.random() * 144)
+  const randomIndex = Math.floor(Math.random() * board.length)
   if (
     board[randomIndex] !== 'obstacle' &&
     board[randomIndex] !== 'snake' &&
@@ -240,7 +381,7 @@ const downMovement = () => {
     if (index === 0) {
       pastLocation = part
       board[snakeBody[index].substring(6)] = ''
-      snakeBody[index] = `square${Number(part.substring(6)) + 12}`
+      snakeBody[index] = `square${Number(part.substring(6)) + 19}`
       if (
         board[snakeBody[index].substring(6)] === 'obstacle' ||
         board[snakeBody[index].substring(6)] === 'snake'
@@ -249,6 +390,9 @@ const downMovement = () => {
         return
       }
       if (board[snakeBody[index].substring(6)] === 'badApple') {
+        if (score === 1) {
+          showGameOverScreen()
+        }
         decreaseSize()
         return
       }
@@ -273,7 +417,7 @@ const upMovement = () => {
     if (index === 0) {
       pastLocation = part
       board[snakeBody[index].substring(6)] = ''
-      snakeBody[index] = `square${Number(part.substring(6)) - 12}`
+      snakeBody[index] = `square${Number(part.substring(6)) - 19}`
       if (
         board[snakeBody[index].substring(6)] === 'obstacle' ||
         board[snakeBody[index].substring(6)] === 'snake'
@@ -282,6 +426,9 @@ const upMovement = () => {
         return
       }
       if (board[snakeBody[index].substring(6)] === 'badApple') {
+        if (score === 1) {
+          showGameOverScreen()
+        }
         decreaseSize()
         return
       }
@@ -315,6 +462,9 @@ const rightMovement = () => {
         return
       }
       if (board[snakeBody[index].substring(6)] === 'badApple') {
+        if (score === 1) {
+          showGameOverScreen()
+        }
         decreaseSize()
         return
       }
@@ -348,6 +498,9 @@ const leftMovement = () => {
         return
       }
       if (board[snakeBody[index].substring(6)] === 'badApple') {
+        if (score === 1) {
+          showGameOverScreen()
+        }
         decreaseSize()
         return
       }
