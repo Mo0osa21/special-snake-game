@@ -361,6 +361,9 @@ const increaseSize = () => {
   getNormalApple()
 
   updateBoard()
+  if (level === 15) {
+    showGameOverScreen()
+  }
 }
 
 const moveSnake = () => {
@@ -596,6 +599,9 @@ const levelCalc = () => {
     speed = 180
     level = 14
   } else if (score >= 75 && score < 80) {
+    speed = 180
+    level = 15
+  } else {
     speed = 180
     level = 15
   }

@@ -8,7 +8,7 @@
     <title>Document</title>
   </head>
   <body id="game-over-body">
-    <h1>Game Over</h1>
+    <h1 id="mainTitle"></h1>
     <p id="data"></p>
     <div id="buttons">
       <button id="try-again">Try Again</button>
@@ -21,5 +21,12 @@
   let finalScore = sessionStorage.getItem('score')
   let finalLevel = sessionStorage.getItem('level')
   const dataElm = document.querySelector('#data')
-  dataElm.innerHTML = `<p><h3>You lost the game!</h3> </br> You reached Level <strong>${finalLevel}</strong> with a score of <strong>${finalScore}</strong> </p>`
+  const mainTitleElm = document.querySelector('#mainTitle')
+  if (finalLevel === '15') {
+    dataElm.innerHTML = `<p><h3>You Won the game!</h3> </br> You reached Level <strong>${finalLevel}</strong> with a score of <strong>${finalScore}</strong> </p>`
+    mainTitleElm.textContent = 'Congrats!!!'
+  } else {
+    dataElm.innerHTML = `<p><h3>You lost the game!</h3> </br> You reached Level <strong>${finalLevel}</strong> with a score of <strong>${finalScore}</strong> </p>`
+    mainTitleElm.textContent = 'Game Over'
+  }
 </script>
