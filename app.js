@@ -1,6 +1,6 @@
-let snakeBody = ['square66', 'square65', 'square64']
+let snakeBody = ['square142', 'square143', 'square144']
 let snakeSize = snakeBody.length
-let direction = 'right'
+let direction = 'left'
 let gameInterval
 let board = [
   'obstacle',
@@ -145,9 +145,9 @@ let board = [
   '',
   '',
   '',
-  '',
-  '',
-  '',
+  'snake',
+  'snake',
+  'snake',
   '',
   '',
   '',
@@ -289,11 +289,9 @@ let board = [
   'obstacle',
   'obstacle'
 ]
-let condition = false
-let message = ''
 let level = 1
-let speed = 400
-let score = snakeSize
+let speed = 300
+let score = snakeSize - 3
 
 const messageElm = document.querySelector('#message')
 const scoreElm = document.querySelector('#score')
@@ -302,9 +300,10 @@ const startButtonElm = document.querySelector('#start')
 const instructionsElm = document.querySelector('#instructions')
 const mainElm = document.querySelector('#main')
 const boardElm = document.querySelector('.board')
-const homeButtonElm = document.querySelector('#back-home')
 const againButtonElm = document.querySelector('#try-again')
 const loseElm = document.querySelector('#losing-msg')
+const aElm = document.querySelector('a')
+const homeElm = document.querySelector('#home')
 
 const getNormalApple = () => {
   const randomIndex = Math.floor(Math.random() * board.length)
@@ -532,9 +531,9 @@ const reset = () => {
     snakeBody.pop()
   }
 
-  snakeBody = ['square66', 'square65', 'square64']
+  snakeBody = ['square142', 'square143', 'square144']
   snakeSize = snakeBody.length
-  direction = 'right'
+  direction = 'left'
 
   snakeBody.forEach((part) => {
     board[Number(part.substring(6))] = 'snake'
@@ -546,50 +545,59 @@ const reset = () => {
   condition = false
   message = ''
   level = 1
-  speed = 1000
+  speed = 300
   updateBoard()
 }
 
 const levelCalc = () => {
   if (score >= 3 && score < 5) {
-    speed = 400
+    speed = 300
     level = 1
   } else if (score >= 5 && score < 10) {
-    speed = 370
+    speed = 290
     level = 2
   } else if (score >= 10 && score < 15) {
-    speed = 340
+    speed = 280
     level = 3
   } else if (score >= 15 && score < 20) {
-    speed = 310
+    speed = 270
     level = 3
   } else if (score >= 20 && score < 25) {
-    speed = 280
+    speed = 260
     level = 4
   } else if (score >= 25 && score < 30) {
     speed = 250
     level = 5
   } else if (score >= 30 && score < 35) {
-    speed = 220
+    speed = 240
     level = 6
   } else if (score >= 35 && score < 40) {
-    speed = 190
+    speed = 230
     level = 7
   } else if (score >= 40 && score < 45) {
-    speed = 160
+    speed = 220
     level = 8
   } else if (score >= 45 && score < 50) {
-    speed = 130
+    speed = 210
     level = 9
   } else if (score >= 50 && score < 55) {
-    speed = 100
+    speed = 200
     level = 10
   } else if (score >= 55 && score < 60) {
-    speed = 80
+    speed = 190
     level = 11
-  } else if (score >= 60) {
-    speed = 70
+  } else if (score >= 60 && score < 65) {
+    speed = 180
     level = 12
+  } else if (score >= 65 && score < 70) {
+    speed = 180
+    level = 13
+  } else if (score >= 70 && score < 75) {
+    speed = 180
+    level = 14
+  } else if (score >= 75 && score < 80) {
+    speed = 180
+    level = 15
   }
 }
 
@@ -625,12 +633,6 @@ const startGame = () => {
   getBadApple()
   getNormalApple()
   updateBoard()
-  instructionsElm.style.display = 'none'
-  startButtonElm.style.display = 'none'
-  boardElm.style.display = 'flex'
-  boardElm.style.flexWrap = 'wrap'
-  boardElm.style.justifyContent = 'center'
-  boardElm.style.margin = '20px auto'
 }
 
 document.addEventListener('keyup', (event) => {
@@ -645,16 +647,22 @@ document.addEventListener('keyup', (event) => {
     leftMovement()
   }
 })
-const displayLosingMsg = () => {
-  loseElm.innerHTML = `<p>You got ${score} points as score and reached level ${level}</p>`
-}
 const showGameOverScreen = () => {
-  window.location.href = 'gameover.html'
+  sessionStorage.setItem('score', score)
+  sessionStorage.setItem('level', level)
+  window.location.href = `gameover.html`
 }
-againButtonElm.addEventListener('click', () => {
+
+againButtonElm?.addEventListener('click', () => {
+  sessionStorage.setItem('startGame', 'true')
+  window.location.href = 'board.html'
+})
+
+homeElm?.addEventListener('click', () => {
   window.location.href = 'index.html'
 })
-homeButtonElm.addEventListener('click', () => {
-  window.location.href = 'index.html'
+
+startButtonElm?.addEventListener('click', () => {
+  sessionStorage.setItem('reStartGame', 'true')
+  window.location.href = 'board.html'
 })
-startButtonElm.addEventListener('click', startGame)

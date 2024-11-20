@@ -9,9 +9,17 @@
   </head>
   <body id="game-over-body">
     <h1>Game Over</h1>
-    <p>You lost the game!</p>
-    <p id="losing-msg"></p>
-    <button id="try-again">Try Again</button>
-    <button id="back-home">Back to Home</button>
+    <p id="data"></p>
+    <div id="buttons">
+      <button id="try-again">Try Again</button>
+      <button id="home">Back Home</button>
+    </div>
   </body>
 </html>
+
+<script>
+  let finalScore = sessionStorage.getItem('score')
+  let finalLevel = sessionStorage.getItem('level')
+  const dataElm = document.querySelector('#data')
+  dataElm.innerHTML = `<p><h3>You lost the game!</h3> </br> You reached Level <strong>${finalLevel}</strong> with a score of <strong>${finalScore}</strong> </p>`
+</script>
