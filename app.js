@@ -291,7 +291,7 @@ let board = [
 ]
 let level = 1
 let speed = 300
-let score = snakeSize - 3
+let score = snakeSize
 
 const messageElm = document.querySelector('#message')
 const scoreElm = document.querySelector('#score')
