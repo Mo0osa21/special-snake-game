@@ -22,7 +22,7 @@
 
 ### Play the Game
 
-#### Click here to play the Snake Game (Replace # with your deployed game link)
+#### Click here to play the Snake Game ([Special Snake Game](https://special-snake-game.surge.sh/))
 
 ## 🐍 How to Play
 

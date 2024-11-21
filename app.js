@@ -653,6 +653,7 @@ document.addEventListener('keyup', (event) => {
     leftMovement()
   }
 })
+
 const showGameOverScreen = () => {
   sessionStorage.setItem('score', score)
   sessionStorage.setItem('level', level)
